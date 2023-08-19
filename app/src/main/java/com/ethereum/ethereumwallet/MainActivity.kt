@@ -1,5 +1,6 @@
 package com.ethereum.ethereumwallet
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -53,7 +54,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             fillUi(walletSpec)
 
         } else if (v?.id == R.id.sign_msg) {
-
+            val intent = Intent(this, SignMessage::class.java)
+            startActivity(intent)
         }
     }
 

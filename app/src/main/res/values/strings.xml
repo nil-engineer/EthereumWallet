@@ -5,5 +5,8 @@
     <string name="private_key">Private key</string>
     <string name="re_generate_btn">Re-generate</string>
     <string name="sign_a_message_btn">Sign a message</string>
+    <string name="sign">Sign</string>
+    <string name="nonce">Nonce</string>
+    <string name="message">Message</string>
 
 </resources>
