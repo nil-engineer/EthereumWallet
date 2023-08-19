@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EthereumWallet</string>
+    <string name="mnemonic">Mnemonic</string>
+    <string name="address">Address</string>
+    <string name="private_key">Private key</string>
+
 </resources>
