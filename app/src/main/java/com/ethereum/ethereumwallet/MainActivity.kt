@@ -13,6 +13,7 @@ import org.web3j.crypto.MnemonicUtils
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var credentials: Credentials
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val masterKeypair = Bip32ECKeyPair.generateKeyPair(seed)
         val bip44Keypair: Bip32ECKeyPair = generateBip44KeyPair(masterKeypair, false)
         val hexPrivateKey = bip44Keypair.privateKey.toString(16)
-        val credentials: Credentials = Bip44WalletUtils.loadBip44Credentials("", mnemonic)
+        credentials = Bip44WalletUtils.loadBip44Credentials("", mnemonic)
         val addr = credentials.address
         return Triple(mnemonic, addr, hexPrivateKey)
     }
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         } else if (v?.id == R.id.sign_msg) {
             val intent = Intent(this, SignMessage::class.java)
+            intent.putExtra("cred", credentials.ecKeyPair)
             startActivity(intent)
         }
     }
