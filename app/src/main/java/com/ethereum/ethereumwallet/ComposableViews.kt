@@ -18,13 +18,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 /** composable view that show wallet specifications.
- * @param wordList: list of mnemonic words to show
- * @param address: Ethereum wallet address to show
- * @param privateKey: wallet private key to show
+ * @param generator: instance of WalletGenerator class passed to re-generate wallet
+ * @param triple: a triple object to access generated wallet specifications.
+ *                  first item is a list of mnemonic words
+ *                  second item is wallet address
+ *                  third item is private key
  */
 
 @Composable
-fun walletAddressView(wordList: List<String>, address: String, privateKey: String) {
+fun walletAddressView(generator: WalletGenerator, triple: Triple<List<String>, String, String>/*wordList: List<String>, address: String, privateKey: String*/) {
+//    val generator = WalletGenerator()
+
     Column {
         Text(
             text = stringResource(R.string.mnemonic),
@@ -37,7 +41,7 @@ fun walletAddressView(wordList: List<String>, address: String, privateKey: Strin
 //                modifier = Modifier.align(Alignment.CenterVertically)
         )
         LazyVerticalGrid(columns = GridCells.Fixed(4)) {
-            item(wordList) {
+            items(triple.first.size) {
 //                LazyColumn {
                     Text(text = "test")
 //                }
@@ -55,7 +59,7 @@ fun walletAddressView(wordList: List<String>, address: String, privateKey: Strin
         )
 
         Text(
-            text = address,
+            text = triple.second,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -76,7 +80,7 @@ fun walletAddressView(wordList: List<String>, address: String, privateKey: Strin
         )
 
         Text(
-            text = privateKey,
+            text = triple.third,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Start,
@@ -89,6 +93,7 @@ fun walletAddressView(wordList: List<String>, address: String, privateKey: Strin
     Row {
         Button(onClick = {
             //your onclick code here
+            generator.generateWallet()
         }) {
             Text(text = "Re-generate")
         }
