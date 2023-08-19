@@ -3,5 +3,7 @@
     <string name="mnemonic">Mnemonic</string>
     <string name="address">Address</string>
     <string name="private_key">Private key</string>
+    <string name="re_generate_btn">Re-generate</string>
+    <string name="sign_a_message_btn">Sign a message</string>
 
 </resources>
