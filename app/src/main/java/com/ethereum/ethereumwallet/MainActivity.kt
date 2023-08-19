@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         } else if (v?.id == R.id.sign_msg) {
             val intent = Intent(this, SignMessage::class.java)
-            intent.putExtra("cred", credentials.ecKeyPair)
+            intent.putExtra(Constants.PRIVATE_KEY, credentials.ecKeyPair.privateKey)
+            intent.putExtra(Constants.PUBLIC_KEY, credentials.ecKeyPair.publicKey)
             startActivity(intent)
         }
     }
